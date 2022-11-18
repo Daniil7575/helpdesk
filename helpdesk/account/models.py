@@ -1,5 +1,27 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token,
+                                 *args, **kwargs):
+    print(sender)
+    email_plaintext_message = '{}?token={}'.format(
+        reverse('account:password_reset:reset-password-confirm'),
+        reset_password_token.key
+    )
+
+    send_mail(
+        'Сброс пароля для HelpDesk',
+        email_plaintext_message,
+        settings.EMAIL_HOST_USER,
+        [reset_password_token.user.email]
+    )
 
 
 class Profile(models.Model):
@@ -29,3 +51,6 @@ class Profile(models.Model):
         default=CLIENT,
         verbose_name='Тип аккаунта'
     )
+
+
+

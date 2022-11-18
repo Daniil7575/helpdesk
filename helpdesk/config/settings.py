@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'rest_framework',
+    'django_rest_passwordreset',
     # 'rest_framework.authtoken',
     # 'djoser',
     
@@ -148,3 +149,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'django.5mtp@yandex.com'
+EMAIL_HOST_PASSWORD = 'qhqbsptslgoeqhqa'
