@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'rest_framework',
     'django_rest_passwordreset',
-    # 'rest_framework.authtoken',
-    # 'djoser',
+    'rest_framework.authtoken',
+    'djoser',
     
 ]
 
@@ -145,6 +145,7 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
@@ -158,3 +159,5 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'django.5mtp@yandex.com'
 EMAIL_HOST_PASSWORD = 'qhqbsptslgoeqhqa'
+
+CSRF_HEADER_NAME = 'X-CSRFToken'

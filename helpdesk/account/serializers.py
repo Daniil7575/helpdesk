@@ -83,6 +83,3 @@ class ChangePasswordSerializer(serializers.Serializer):
         required=True,
         label='Новый пароль'
     )
-
-
-# class 

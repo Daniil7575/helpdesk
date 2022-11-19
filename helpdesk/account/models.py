@@ -52,5 +52,5 @@ class Profile(models.Model):
         verbose_name='Тип аккаунта'
     )
 
-
-
+    def __str__(self) -> str:
+        return f'Профиль {self.user.username}'
