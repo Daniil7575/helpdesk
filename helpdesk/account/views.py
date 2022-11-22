@@ -17,7 +17,7 @@ from .models import Profile
 from .permissions import IsAdmin
 from .serializers import ProfileSerializer, ChangePasswordSerializer
 
-import json
+# import json
 
 # class RegisterAPIView(CreateAPIView):
 #     queryset = Profile.objects.all()
@@ -36,7 +36,7 @@ class UserRegisterAPIView(ListCreateAPIView):
     )
 
 
-# @method_decorator(csrf_protect, name='dispatch')
+@method_decorator(csrf_protect, name='dispatch')
 class ChangePasswordAPIView(UpdateAPIView):
     serializer_class = ChangePasswordSerializer
     model = User
@@ -82,7 +82,7 @@ def login_user(request):
             {'message': 'Вы ввели не все данные.'},
             status=status.HTTP_400_BAD_REQUEST,
         )
-        
+
     creds = {
         get_user_model().USERNAME_FIELD: username,
         'password': password
